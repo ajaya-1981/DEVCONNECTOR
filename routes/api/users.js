@@ -9,6 +9,7 @@ const config = require('config');
 // get the data model of user
 
 const User = require('../../models/User');
+
 // @route   POST api/users
 // @desc    Test route
 // @access  Public
