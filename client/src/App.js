@@ -5,6 +5,8 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Register from './components/auth/Register';
 import Login from './components/auth/Login';
 import Alert from './components/layouts/Alert';
+import Dasboard from './components/dashboard/Dasboard';
+import PrivateRoute from './components/routing/PrivateRoute';
 //redux
 import { Provider } from 'react-redux';
 import store from './store';
@@ -18,7 +20,6 @@ if (localStorage.token) {
 
 const App = () => {
   useEffect(() => {
-    
     store.dispatch(loadUser());
   }, []);
   return (
@@ -32,6 +33,7 @@ const App = () => {
             <Switch>
               <Route exact path="/register" component={Register}></Route>
               <Route exact path="/login" component={Login}></Route>
+              <PrivateRoute exact path="/dashboard" component={Dasboard}></PrivateRoute>
             </Switch>
           </section>
         </Fragment>
