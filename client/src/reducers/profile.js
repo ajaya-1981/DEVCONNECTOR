@@ -7,7 +7,7 @@ const intialState = {
   error: {},
 };
 
-export default function (state = intialState, action) {
+export default function profile(state = intialState, action) {
   const { type, payload } = action;
   switch (type) {
     case GET_PROFILE:
