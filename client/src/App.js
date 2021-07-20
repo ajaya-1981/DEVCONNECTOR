@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Register from './components/auth/Register';
 import Login from './components/auth/Login';
 import Alert from './components/layouts/Alert';
-import Dasboard from './components/dashboard/Dasboard';
+import Dashboard from './components/dashboard/Dashboard';
 import PrivateRoute from './components/routing/PrivateRoute';
 import CreateProfile from './components/profile-forms/CreateProfile';
 import EditProfile from './components/profile-forms/EditProfile';
@@ -39,7 +39,7 @@ const App = () => {
               <PrivateRoute
                 exact
                 path="/dashboard"
-                component={Dasboard}
+                component={Dashboard}
               ></PrivateRoute>
               <PrivateRoute
                 exact

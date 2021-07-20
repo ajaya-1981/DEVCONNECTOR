@@ -1,5 +1,5 @@
 import React, { Fragment, useState, useEffect } from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createProfile, getCurrentProfile } from '../../actions/profile';
@@ -25,9 +25,7 @@ const EditProfile = ({
     instagram: '',
   });
   const [displaySocialInputs, toggleSocialInputs] = useState(false);
-
-  useEffect(() => {
-    getCurrentProfile();
+  const setValues = () => {
     setFormData(
       {
         company: loading || !profile.company ? '' : profile.company,
@@ -44,9 +42,13 @@ const EditProfile = ({
         youtube: loading || !profile.social ? '' : profile.social.youtube,
         instagram: loading || !profile.social ? '' : profile.social.instagram,
       },
-      []
+      { loading }
     );
-  });
+  };
+  useEffect(() => {
+    getCurrentProfile();
+    setValues();
+  }, []);
   const {
     company,
     website,
@@ -66,7 +68,7 @@ const EditProfile = ({
 
   const onSubmit = (e) => {
     e.preventDefault();
-    EditProfile(formData, history);
+    createProfile(formData, history, true);
   };
   return (
     <Fragment>
@@ -244,8 +246,8 @@ const EditProfile = ({
 
 EditProfile.propTypes = {
   createProfile: PropTypes.func.isRequired,
-  getCurrentProfile: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired,
+  getCurrentProfile: PropTypes.func.isRequired,
 };
 const mapStateToProps = (state) => ({
   profile: state.profile,
